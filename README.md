@@ -17,6 +17,6 @@ A MQ-3 sensor Arduino breathalyser.
 |:----------------------:|:--------------------:|
 | ![](sensview.jpeg)     | ![](dispview.jpeg)   |
 
-| Board view             |  Animation			|
-|:----------------------:|:--------------------:|
-| ![](board.jpeg)		 |	Coming soon			|
+| Board view             |
+|:----------------------:|
+| ![](board.jpeg)		 |
