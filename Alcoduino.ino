@@ -4,15 +4,17 @@
 #include <Adafruit_SSD1306.h>
 #define OLED_RESET 4
 
-int timeToWarm = 10;
+int timeToWarm = 5;
+/* For actual use, set wait time to 500 */
 unsigned long time;
 
-int analogPin = 0;
+const int analogPin = 0;
 int val = 0;
+int buttonState = 0;  
 
 Adafruit_SSD1306 display(OLED_RESET);
 
-void setup()  {                
+void setup()  {              
  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
  display.clearDisplay();
 }
@@ -20,17 +22,17 @@ void setup()  {
 
 void loop() {  
   delay(100);
-
+  
   val = readAlcohol();
   printTitle();
   printWarming();
-
+  
   time = millis() / 1000;
   
   if (time <= timeToWarm) {
     time = map(time, 0, timeToWarm, 0, 100);
-    display.drawRoundRect(115, 1, 9, 29, 4, WHITE); //Empty Bar
-    display.fillRoundRect(115, 1, 9, (time/3.5), 4, WHITE);
+    display.drawRoundRect(0, 10, 128, 7, 4, WHITE); //Empty Bar
+    display.fillRoundRect(0, 10, (time * 1.2), 7, 4, WHITE);
   }
   else {
      printNewTitle();
@@ -76,43 +78,30 @@ void printAlcoholMeter(int value) {
   display.setTextColor(WHITE);
   
   display.setCursor(85,0);
-  display.println("L");
-  
-  display.setCursor(85,9);
-  display.println("|");
-  display.setCursor(85,12);
-  display.println("|");
-  display.setCursor(85,15);
-  display.println("|");
-  
-  display.setCursor(85,24);
   display.println("H");
+  display.drawFastVLine(87, 9, 13, WHITE);
+  display.setCursor(85,24);
+  display.println("L");
   
   display.drawRect(100, 0, 25, 8, WHITE);
   display.drawRect(100, 8, 25, 8, WHITE);
   display.drawRect(100, 16, 25, 8, WHITE);
   display.drawRect(100, 24, 25, 8, WHITE);
   
-  if(value>= 125 && value<650) {
-    display.fillRect(100, 0, 25, 8, WHITE);
+  if(value>= 95 && value<100) {
+    display.fillRect(100, 24, 25, 8, WHITE); /* New */
   }
   
-  if (value>=650 && value<770) {
-    display.fillRect(100, 0, 25, 8, WHITE);
-    display.fillRect(100, 8, 25, 8, WHITE);
+  if (value>=100 && value<110) {
+    display.fillRect(100, 16, 25, 16, WHITE); /* New */
   }
   
   if (value>=770 && value<800) {
-    display.fillRect(100, 0, 25, 8, WHITE);
-    display.fillRect(100, 8, 25, 8, WHITE);
-    display.fillRect(100, 16, 25, 8, WHITE);
+    display.fillRect(100, 8, 25, 24, WHITE); /* New */
   }
 
   if(value >= 800) {
-    display.fillRect(100, 0, 25, 8, WHITE);
-    display.fillRect(100, 8, 25, 8, WHITE);
-    display.fillRect(100, 16, 25, 8, WHITE);
-    display.fillRect(100, 24, 25, 8, WHITE);
+    display.fillRect(100, 0, 25, 32, WHITE); /* New */
   }
 }
  
