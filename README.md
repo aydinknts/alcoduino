@@ -9,14 +9,14 @@ A MQ-3 sensor Arduino breathalyser.
 
 
 ## Diagram
-![Arduino diagram](/diagram.png)
+![Arduino diagram](img/diagram.png)
 
 ## Images in action
 
-|Sensor view             |  Display view		|
-|:----------------------:|:--------------------:|
-| ![](sensview.jpeg)     | ![](dispview.jpeg)   |
+|Sensor view             |  Display view		|	Warming up 			|
+|:----------------------:|:--------------------:|:---------------------:|
+| ![](img/sensview.jpeg)     | ![](img/dispview.jpeg)   |	![](img/anim.gif)  |
 
-| Board view             |
-|:----------------------:|
-| ![](board.jpeg)		 |
+| Board view             	 |
+|:--------------------------:|
+| ![](img/board.jpeg)		 |
